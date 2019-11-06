@@ -9,16 +9,22 @@ files <- commandArgs(trailingOnly = TRUE)
 if(length(files <1 )){
   print("Please provide a list of .csv files containing surveys data to be read. 
         
-        To speify all .csv files in a directory, use -a as input")
-}
+        To specify all .csv files in the data directory, use -a as input")
+} 
 
 if("-a" %in% files){
   
-  files<-Sys.glob("data/*.csv")
+  folder <- files[2]
   
-} else{
-    files<-files
+  files<-Sys.glob(str_c(folder,"/*.csv"))
+  if(length(files) <1){
+    print("No files found in the specified folder.")
+  }
+}  else {
+  files<-files
 }
+
+
 
 
 for(file in files)

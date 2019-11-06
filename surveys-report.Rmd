@@ -1,23 +1,23 @@
 ---
-title: "Markdown Demo"
+title: "Surveys Report"
 author: "Tobin Magle"
 date: "11/4/2019"
 output: html_document
 params:
-          file: ../data/complete_surveys.csv
-                    
-          sex: [M, F]
+          file: data/complete_surveys.csv
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(knitr)
+
 surveys_complete<-read_csv(params$file)
-surveys_complete<-surveys_complete%>%
-          filter(sex%in%params$sex)
 ```
 
 # Small animal survey data
+
+This is the file: `r params$file`
+
 
 This is a survey of small animals from `r nlevels(as.factor(surveys_complete$plot_id))` plots
 from the years `r min(surveys_complete$year)` to `r max(surveys_complete$year)`. Each row is an animal. 
@@ -27,6 +27,8 @@ Each column is an attribute of that animal. The variables recorded are `r names(
 Here is a breakdown of the number of female vs male animals observed in the study
 
 ```{r, table, echo = FALSE}
+
+
 kable(surveys_complete%>%
                 group_by(sex)%>%
                 tally)
@@ -44,6 +46,6 @@ ggplot(data = surveys_complete,
        aes(x = weight, 
            y = hindfoot_length, 
            color = species_id)) + 
-          geom_point(alpha = 0.1,
+geom_point(alpha = 0.1,
            aes(color = species_id))
 ```

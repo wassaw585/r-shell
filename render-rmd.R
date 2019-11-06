@@ -8,10 +8,10 @@ files <- commandArgs(trailingOnly = TRUE)
 
 if("-a" %in% files){
   
-  files<-Sys.glob("data")
+  files<-Sys.glob("data/*")
   
 } else{
-    
+    files<-files
 }
 
 

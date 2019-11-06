@@ -1,18 +1,22 @@
 library(rmarkdown)
+library(stringr)
 
-args <- unlist(commandArgs(trailingOnly = TRUE))
-
-length(args)
+files <- commandArgs(trailingOnly = TRUE)
 
 #same as hitting knit, uses the default parameters
 #render("code/surveys-report.Rmd")
 
-
-for(arg in args)
+for(file in files)
 {
-  arg
+  out_name<-str_split_fixed(string=file,
+                            pattern="[/|.]",
+                            n=3)
+  
+  out_name<-str_c(out_name[2], '.html')
+  
   render(input = "surveys-report.Rmd",     # file to render
+         output_file = out_name,
          output_dir = "reports",                #select output directory
-         params = list(file=args)   #sets the file parameter to plot1
+         params = list(file=file)   #sets the file parameter to plot1
         )
 }

@@ -6,9 +6,15 @@ files <- commandArgs(trailingOnly = TRUE)
 #same as hitting knit, uses the default parameters
 #render("code/surveys-report.Rmd")
 
+if(length(files <1 )){
+  print("Please provide a list of .csv files containing surveys data to be read. 
+        
+        To speify all .csv files in a directory, use -a as input")
+}
+
 if("-a" %in% files){
   
-  files<-Sys.glob("data/*")
+  files<-Sys.glob("data/*.csv")
   
 } else{
     files<-files

@@ -10,22 +10,24 @@ if(length(files <1 )){
   print("Please provide a list of .csv files containing surveys data to be read. 
         
         To specify all .csv files in the data directory, use -a as input")
-} 
-
-if("-a" %in% files){
-  
-  folder <- files[2]
-  
-  files<-Sys.glob(str_c(folder,"/*.csv"))
-  if(length(files) <1){
-    print("No files found in the specified folder.")
+} else{
+  if("-a" %in% files){
+    
+    folder <- files[2]
+    
+    files<-Sys.glob(str_c(folder,"/*.csv"))
+    if(length(files) <1){
+      print("No files found in the specified folder.")
+    }
+  }  else {
+    files<-files
   }
-}  else {
-  files<-files
+  
 }
 
 
 
+print(length(files))
 
 for(file in files)
 {

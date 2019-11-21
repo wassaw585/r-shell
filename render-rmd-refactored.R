@@ -6,10 +6,8 @@ parse_arguments <- function(files){
   ## Input: a vector with terminal input
   ## output: a vector of files to render
 
-    if(length(files <1 )){
-      print("Please provide a list of .csv files containing surveys data to be read. 
-            
-            To specify all .csv files in the data directory, use -a as input")
+    if(length(files) == 0 ){
+      print("Please provide a list of .csv files containing surveys data to be read. To specify all .csv files in the data directory, use -a as input")
     } 
     
     if("-a" %in% files){

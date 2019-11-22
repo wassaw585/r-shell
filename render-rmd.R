@@ -12,6 +12,12 @@ if("-a" %in% file_names){
   }
 } else{file_names <- file_names}
 
+if(length(file_names) == 0){
+  print("please provide a list of .csv files
+        
+        To specify a folder, please use the -a flag")
+}
+
 for(file in file_names)
 {
   out_name <- str_split_fixed(string = file,

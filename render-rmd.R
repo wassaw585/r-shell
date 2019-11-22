@@ -3,6 +3,10 @@ library("stringr")
 
 file_names <- commandArgs(trailingOnly = TRUE)
 
+if("-a" %in% file_names){
+  folder <- file_names[2]
+  file_names <- Sys.glob(str_c(folder, "/*.csv"))}
+
 for(file in file_names)
 {
   out_name <- str_split_fixed(string = file,
